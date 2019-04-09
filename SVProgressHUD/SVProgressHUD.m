@@ -684,22 +684,25 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     CGRect statusBarFrame = CGRectZero;
 #endif
     
-#if TARGET_OS_IOS
-    if(!ignoreOrientation && UIInterfaceOrientationIsLandscape(orientation)) {
-        float temp = CGRectGetWidth(orientationFrame);
-        orientationFrame.size.width = CGRectGetHeight(orientationFrame);
-        orientationFrame.size.height = temp;
-        
-        temp = CGRectGetWidth(statusBarFrame);
-        statusBarFrame.size.width = CGRectGetHeight(statusBarFrame);
-        statusBarFrame.size.height = temp;
-    }
-    
-    // Update the motion effects in regard to orientation
-    [self updateMotionEffectForOrientation:orientation];
-#else
-    [self updateMotionEffectForXMotionEffectType:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis yMotionEffectType:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-#endif
+//    https://openradar.appspot.com/46210367
+//  For some reason, adding motion, in ios 12.1.x crashes.
+//  switching to main thread also doesn't help either.
+//#if TARGET_OS_IOS
+//    if(!ignoreOrientation && UIInterfaceOrientationIsLandscape(orientation)) {
+//        float temp = CGRectGetWidth(orientationFrame);
+//        orientationFrame.size.width = CGRectGetHeight(orientationFrame);
+//        orientationFrame.size.height = temp;
+//
+//        temp = CGRectGetWidth(statusBarFrame);
+//        statusBarFrame.size.width = CGRectGetHeight(statusBarFrame);
+//        statusBarFrame.size.height = temp;
+//    }
+//
+//    // Update the motion effects in regard to orientation
+//    [self updateMotionEffectForOrientation:orientation];
+//#else
+//    [self updateMotionEffectForXMotionEffectType:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis yMotionEffectType:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+//#endif
     
     // Calculate available height for display
     CGFloat activeHeight = CGRectGetHeight(orientationFrame);
