@@ -26,3 +26,11 @@ Demo/.idea/Demo.iml
 Demo/.idea/modules.xml
 Demo/.idea/workspace.xml
 Demo/.idea/xcode.xml
+
+# Swift Package
+/.build
+/Packages
+/*.xcodeproj
+.swiftpm/config/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc

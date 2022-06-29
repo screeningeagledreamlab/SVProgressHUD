@@ -148,5 +148,9 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 
 + (NSTimeInterval)displayDurationForString:(nullable NSString*)string;
 
+#pragma mark - Resource Bundle
+
++ (nullable NSBundle *)imageBundle;
+
 @end
 
